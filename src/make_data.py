@@ -351,7 +351,7 @@ def main():
         print(f"[DONE] Saved {len(train)} train (+{len(test)} test) rows")
         return
 
-    quantile_suffixes = ["q75"]]
+    quantile_suffixes = ["q75"]
     for q in quantile_suffixes:
         key = f"ccp_above_{q}"
         print(f"[INFO] Generating dataset for threshold {key}")
