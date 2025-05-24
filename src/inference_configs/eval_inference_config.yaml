@@ -1,0 +1,35 @@
+# Model and Tokenizer Settings
+# model_type: '/home/wutianyi/alignment-handbook/data/Llama-3.1-8B-sft-full-ragqalima-q50-new2'
+# tokenizer_path: 'gpt2'  # Optional, defaults to model_type
+
+# Dataset Settings
+# dataset_path:
+#   - '/home/wutianyi/compute_ccp/inference_data/biography_prompt.jsonl'
+question_column: 'prompt'  # Use the same column for both datasets
+subset: false  # Set to true if you want to use a subset
+subset_num: 10  # Number of samples in the subset
+by_batch: 1
+operate_batch_num: 1
+gpu_memory_utilization: 0.9
+
+# Sampling Parameters
+num_sampling: 1
+temperature: 0
+top_p: 1.0
+top_k: 50
+max_tokens: 2048
+seed: 42
+logprobs: null  # Set to an integer if needed
+format_prompt: true
+system_prompt: "You are a helpful assistant.you should answer user's query first, providing a helpful and accurate response.Then write a <reflection> section following your response, listing all the factual claims you made in your response that you are uncertain about.\n\nOutput your reflection in the following format ONLY:\n<reflection>\nThe following summarizes the facts that I am uncertain about in my answer:\n1. [factual claim 1 that you are uncertain about]\n2. [factual claim 2 that you are uncertain about]\n3. [factual claim 3 that you are uncertain about]\n...[more factual claims]..."
+stop_tokens:
+  - '<|im_end|>'
+  - '<|end_of_text|>'
+  - '<|im_start|>'
+repetition_penalty: 1
+frequency_penalty: 0
+
+
+# LoRA Settings
+lora_checkpoint: null  # Provide path if using LoRA
+tensor_parallel_size: 1
