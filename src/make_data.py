@@ -339,7 +339,6 @@ def main():
     def out_path(name):
         return os.path.join(OUTPUT_DIR, name)
 
-    # ------------------- NO-SURGERY path ---------------------------------- #
     if NO_SURGERY:
         if ONLY_OUTPUT_INFO_SEEK:
             data = [d for d in data if d.get("info-seeking")]
@@ -352,8 +351,7 @@ def main():
         print(f"[DONE] Saved {len(train)} train (+{len(test)} test) rows")
         return
 
-    # ------------------- SURGERY path ------------------------------------- #
-    quantile_suffixes = ["q50", "q65", "q75", "q85", "q95"]
+    quantile_suffixes = ["q75"]]
     for q in quantile_suffixes:
         key = f"ccp_above_{q}"
         print(f"[INFO] Generating dataset for threshold {key}")
