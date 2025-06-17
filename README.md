@@ -80,7 +80,7 @@ bash eval_ccp.sh --model_name your_checkpoint_path --test_data [bio|wildhalu]
     - `unreflected_answer_claim`: Answer claims NOT flagged by the reflection section.
 - `CCP-Based Scores`: TODO
 
-### Step 2: Computing Honesty Balanced Accuracy and Truthfulness using FactSCore.
+### Step 2: Computing Honesty Balanced Accuracy and Truthfulness using FactSCore
 
 ```bash
 # Here we use limalfrqa01_reflect as an example, other settings can be evaluated similarly
@@ -109,6 +109,8 @@ The output will include:
 ### Step 3: Helpfulness Evaluation
 
 ```bash
+# Helpfulness evaluation requires OPENAI LLM Access
+export OPENAI_API_KEY=xxx
 # Here we use limalfrqa01_reflect as an example, other settings can be evaluated similarly
 cd src/bash_scripts
 bash eval_helpfulness.sh --input_file results/qwen25_limalfrqa01_reflect_bio.jsonl --ref_file results/qwen25_lima_vanilla_bio_atomic_fc.jsonl --output_file results/qwen25_limalfrqa01_reflect_bio_helpfulness.xlsx --dataset bio
@@ -139,8 +141,10 @@ The output will include:
 For UNIT_CUT, you don't need to run the CCP evaluation, but need to extract atomic claims first for fact-checking
 
 ```bash
+# Atomic Claim Extraction requires OPENAI LLM Access
+export OPENAI_API_KEY=xxx
 # Here, we use limalfrqa01_cut as an example, other settings can be evaluated similarly
-```bash
+
 # Step 1: Evaluate Truthfulness
 cd src/bash_scripts
 conda activate vllm
@@ -160,6 +164,9 @@ The script will:
 4. Print truthfulness scores as `Macro Avg.`
 
 ```bash
+# Helpfulness evaluation requires OPENAI LLM Access
+export OPENAI_API_KEY=xxx
+
 # Step 2: Evaluate Helpfulness
 bash eval_helpfulness.sh --input_file results/qwen25_limalfrqa01_cut_bio_atomic_fc.jsonl --ref_file results/qwen25_lima_vanilla_bio_atomic_fc.jsonl --output_file results/qwen25_limalfrqa01_cut_bio_helpfulness.xlsx --dataset bio
 ```
